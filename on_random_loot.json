@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "pickaxeenchants:haste",
+    "pickaxeenchants:explosive",
+    "pickaxeenchants:night_vision",
+    "pickaxeenchants:ore_smelter"
+  ]
+}

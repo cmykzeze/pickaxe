@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "pickaxeenchants",
+  "version": "${version}",
+  "name": "Pickaxe Enchants",
+  "description": "Adds the Haste, Explosive, Excavation, Night Vision and Ore Smelter pickaxe enchantments.",
+  "authors": ["You"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.example.pickaxeenchants.PickaxeEnchantsMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
