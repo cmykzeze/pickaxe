@@ -19,8 +19,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 /**
- * Haste (I to X) and Night Vision (I): while you hold the pickaxe you get the real potion effect.
+ * Haste (I to X), Speed (I to II) and Night Vision (I): while you hold the pickaxe you get the real potion effect.
  *  - Haste level N gives the Haste N effect (Haste I at level I ... Haste X at level X).
+ *  - Speed level N gives the Speed N effect (Speed I or Speed II).
  *  - Night Vision gives the Night Vision effect.
  * The effect is refreshed every few ticks and removed again when you put the pickaxe away.
  * An effect that comes from somewhere else (potion, beacon) is never overwritten by a weaker one, and is only
@@ -28,6 +29,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
  */
 public class PickaxeEffects {
 	public static final ResourceKey<Enchantment> HASTE = key("haste");
+	public static final ResourceKey<Enchantment> SPEED = key("speed");
 	public static final ResourceKey<Enchantment> NIGHT_VISION = key("night_vision");
 
 	// ---- Tweak these numbers if you want ----
@@ -39,6 +41,7 @@ public class PickaxeEffects {
 
 	private static final Set<UUID> HASTE_OURS = new HashSet<>();
 	private static final Set<UUID> NV_OURS = new HashSet<>();
+	private static final Set<UUID> SPEED_OURS = new HashSet<>();
 
 	private static ResourceKey<Enchantment> key(String name) {
 		return ResourceKey.create(Registries.ENCHANTMENT,
@@ -56,6 +59,11 @@ public class PickaxeEffects {
 			// Haste level N = Haste N effect; the game counts effect levels from 0, so level N = amplifier N - 1
 			int hasteAmp = haste > 0 ? Math.min(haste, 10) - 1 : -1;
 			sync(player, MobEffects.HASTE, hasteAmp, HASTE_DURATION, HASTE_REFRESH_BELOW, HASTE_OURS);
+
+			// Speed level N = Speed N effect (I or II); amplifier = level - 1
+			int speed = pickaxe ? BreakingEnchants.getLevel(level, stack, SPEED) : 0;
+			int speedAmp = speed > 0 ? Math.min(speed, 2) - 1 : -1;
+			sync(player, MobEffects.SPEED, speedAmp, HASTE_DURATION, HASTE_REFRESH_BELOW, SPEED_OURS);
 
 			int nv = pickaxe ? BreakingEnchants.getLevel(level, stack, NIGHT_VISION) : 0;
 			sync(player, MobEffects.NIGHT_VISION, nv > 0 ? 0 : -1, NV_DURATION, NV_REFRESH_BELOW, NV_OURS);

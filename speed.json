@@ -1,0 +1,11 @@
+{
+  "description": { "translate": "enchantment.pickaxeenchants.speed", "color": "#7FE5A0" },
+  "supported_items": "#minecraft:pickaxes",
+  "weight": 3,
+  "max_level": 2,
+  "min_cost": { "base": 5, "per_level_above_first": 10 },
+  "max_cost": { "base": 35, "per_level_above_first": 10 },
+  "anvil_cost": 2,
+  "slots": ["mainhand"],
+  "effects": {}
+}

@@ -3,7 +3,7 @@
   "id": "pickaxeenchants",
   "version": "${version}",
   "name": "Pickaxe Enchants",
-  "description": "Adds the Haste, Explosive, Excavation, Night Vision and Ore Smelter pickaxe enchantments.",
+  "description": "Adds the Haste, Speed, Explosive, Excavation, Night Vision and Ore Smelter pickaxe enchantments.",
   "authors": ["You"],
   "license": "MIT",
   "environment": "*",
